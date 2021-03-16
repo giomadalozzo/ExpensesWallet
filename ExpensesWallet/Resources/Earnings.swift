@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+class Earnings {
+    
+    func single() {
+        
+    }
+    
+    func recurrent() {
+        
+    }
+}

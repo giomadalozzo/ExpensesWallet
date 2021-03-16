@@ -6,3 +6,22 @@
 //
 
 import Foundation
+
+class Tools {
+    
+    func menu(){
+        
+    }
+    
+    func help(){
+        
+    }
+    
+    func edit(){
+        
+    }
+    
+    func remove() {
+        
+    }
+}

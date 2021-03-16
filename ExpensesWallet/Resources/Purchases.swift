@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+class Purchases {
+    
+    func single() {
+        
+    }
+    
+    func recurrent() {
+        
+    }
+}

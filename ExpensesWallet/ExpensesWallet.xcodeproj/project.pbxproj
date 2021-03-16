@@ -25,6 +25,7 @@
 /* Begin PBXFileReference section */
 		29A8A499260133FC009F6386 /* ExpensesWallet */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ExpensesWallet; sourceTree = BUILT_PRODUCTS_DIR; };
 		29A8A49C260133FC009F6386 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		29A8A4B726014313009F6386 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +42,7 @@
 		29A8A490260133FC009F6386 = {
 			isa = PBXGroup;
 			children = (
+				29A8A4B726014313009F6386 /* Resources */,
 				29A8A49B260133FC009F6386 /* ExpensesWallet */,
 				29A8A49A260133FC009F6386 /* Products */,
 			);
