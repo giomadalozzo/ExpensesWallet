@@ -11,8 +11,9 @@ class Account {
     let type: String
     let bank: String
     let nickname: String
+    var historic: [(String, NSNumber)] = []
     
-    init(String type, String bank, String nickname) {
+    init(type: String, bank: String, nickname: String) {
         self.type = type
         self.bank = bank
         self.nickname = nickname
