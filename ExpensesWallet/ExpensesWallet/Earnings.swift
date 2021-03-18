@@ -13,7 +13,7 @@ class Earnings: RegisterData{
         
     }
     
-    func recurrent() -> String {
+    func recurrent(account: Account) -> String {
         print("Digite o valor do crédito recorrente: ")
         let value = readLine()
         

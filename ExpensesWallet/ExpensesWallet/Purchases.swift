@@ -13,7 +13,7 @@ class Purchases: RegisterData {
         
     }
     
-    func recurrent() -> String{
+    func recurrent(account: Account) -> String{
         print("Digite o valor da cobrança recorrente: ")
         let value = readLine()
         
@@ -46,6 +46,11 @@ class Purchases: RegisterData {
         
         print("\nDia da cobrança periódica: \(unwrappedDate)")
         
+        var transaction: [String] = ["Débito", "Data", unwrappedValue2]
+        
+        account.historic.append(transaction)
+        
+        print(transaction)
         return "\nRegistro realizado com sucesso! Retornando para o menu.\n\n"
     }
 }

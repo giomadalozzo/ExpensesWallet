@@ -48,6 +48,8 @@ struct Tools {
         Por favor, digite a opção que deseja:
         info - Opção para exibir as informações da conta selecionada
         extrato - Opção para exibir o histórico da conta
+        addrec gasto - Opção para adicionar gastos recorrentes
+        addrec crédito - Opção para adicionar crédito recorrentes
         voltar - Opção para voltar para o menu de seleção de contas
         sair - Opção para sair do programa
         """)
@@ -58,9 +60,15 @@ struct Tools {
         case "info":
             print("Tipo: \(selectAccount.type) Banco: \(selectAccount.bank) Apelido: \(selectAccount.nickname)")
         case "extrato":
-            selectAccount.report()
+            selectAccount.report(account: selectAccount)
         case "sair":
             self.quit()
+        case "addrec gasto":
+            var add = Purchases()
+            print(add.recurrent(account: selectAccount))
+        case "addrec crédito":
+            var add = Earnings()
+            add.recurrent(account: selectAccount)
         case "voltar":
             self.startMenu(listAccounts: listAccounts)
         default:

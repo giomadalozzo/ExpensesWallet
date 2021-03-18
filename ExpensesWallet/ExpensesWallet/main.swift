@@ -17,5 +17,5 @@ print(listAccounts[0].bank)
 
 let earn = Purchases()
 
-print(earn.recurrent())
+
 

@@ -11,5 +11,5 @@ protocol RegisterData {
     
     func single()
     
-    func recurrent() -> String
+    func recurrent(account: Account) -> String
 }
