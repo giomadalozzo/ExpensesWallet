@@ -7,12 +7,13 @@
 
 import Foundation
 
-var listAccounts: [Account] = []
+var listAccounts: [Account] = [Account(type: "corrente", bank: "nubank", nickname: "continha"), Account(type: "poupança", bank: "bb", nickname: "contão")]
 var tools = Tools()
 
 //STARTING MENU
 listAccounts = tools.startMenu(listAccounts: listAccounts)
 print(listAccounts[0].bank)
+
 
 let earn = Purchases()
 

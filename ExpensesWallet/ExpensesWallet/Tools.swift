@@ -22,7 +22,15 @@ struct Tools {
         
         switch option {
         case "selecionar":
-            self.selectAccount()
+            if listAccounts.isEmpty{
+                print("\nVocê não tem contas registradas. Por favor, registre uma nova conta.")
+                listAccounts = self.registerAccount(listAccounts: listAccounts)
+            } else{
+                var selectedAccount: Account
+                selectedAccount = self.selectAccount(listAccounts: listAccounts)
+                print("Conta selecionada: \(selectedAccount.nickname)")
+                self.accountMenu(selectAccount: selectedAccount)
+            }
         case "criar":
             listAccounts = self.registerAccount(listAccounts: listAccounts)
         case "sair":
@@ -34,8 +42,33 @@ struct Tools {
         return listAccounts
     }
     
-    func accountMenu(){
-    
+    func accountMenu(selectAccount: Account){
+        print("""
+        \nMENU DE OPÇÕES DA CONTA\n
+        Por favor, digite a opção que deseja:
+        info - Opção para exibir as informações da conta selecionada
+        extrato - Opção para exibir o histórico da conta
+        voltar - Opção para voltar para o menu de seleção de contas
+        sair - Opção para sair do programa
+        """)
+        
+        let option = readLine()
+        
+        switch option {
+        case "info":
+            print("Tipo: \(selectAccount.type) Banco: \(selectAccount.bank) Apelido: \(selectAccount.nickname)")
+        case "extrato":
+            selectAccount.report()
+        case "sair":
+            self.quit()
+        case "voltar":
+            self.startMenu(listAccounts: listAccounts)
+        default:
+            print("Nenhuma opção identificada. \n")
+            self.startMenu(listAccounts: listAccounts)
+        }
+        
+        self.accountMenu(selectAccount: selectAccount)
     }
     
     func help(){
@@ -52,6 +85,7 @@ struct Tools {
     
     func registerAccount(listAccounts: [Account]) -> [Account]{
         var listAccounts = listAccounts
+        
         print("Digite o tipo da conta (corrente ou poupança): ")
         let type = readLine()
         guard let typeUnwrapped = type else{
@@ -82,8 +116,24 @@ struct Tools {
         return listAccounts
     }
     
-    func selectAccount() {
-        print("SELECIONANDO")
+    func selectAccount(listAccounts: [Account]) -> Account{
+        
+        print("\nSELECIONE A CONTA DESEJADA:")
+        for (index, account) in listAccounts.enumerated() {
+            print("Opção \(index+1) - Tipo: \(account.type)  Banco: \(account.bank)  Apelido: \(account.nickname)")
+        }
+        
+        let option = readLine()
+        guard let optionUnwrapped = option else{
+            print("Opção não reconhecida. Retornando para o menu.")
+            return listAccounts[0]
+        }
+        guard let optionInt = Int(optionUnwrapped) else{
+            print("Opção não reconhecida. Retornando para o menu.")
+            return listAccounts[0]
+        }
+
+        return listAccounts[optionInt-1]
     }
     
     func quit(){

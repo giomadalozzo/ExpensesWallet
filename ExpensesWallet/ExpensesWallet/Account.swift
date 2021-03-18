@@ -13,6 +13,9 @@ class Account {
     let nickname: String
     var historic: [(String, NSNumber)] = []
     
+    
+    // R$ 113.32  -> String R$ 113.32 [[String]]   [ [débito, 11/02, R$ 113.32] ]
+    
     init(type: String, bank: String, nickname: String) {
         self.type = type
         self.bank = bank
