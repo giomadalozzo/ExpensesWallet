@@ -20,7 +20,7 @@ class Earnings: RegisterData{
         numberFormatter.numberStyle = .currency
         numberFormatter.locale = Locale.current
         guard let valueDouble = Double(unwrappedValue) else{
-            return "Nenhum valor digitado. Retornando para o menu."
+            return "Nenhum valor digitado. Retornando para o menu. 😥"
         }
         let valueNS = NSNumber(value: valueDouble)
         guard let unwrappedValue2 = numberFormatter.string(from: valueNS) else{
@@ -33,11 +33,11 @@ class Earnings: RegisterData{
         let date = readLine()
         
         guard let unwrappedDate = date else {
-            return "Nenhuma data digitada. Retornando para o menu."
+            return "Nenhuma data digitada. Retornando para o menu. 😥"
         }
         
         if unwrappedDate == "" {
-            return "Nenhuma data digitada. Retornando para o menu."
+            return "Nenhuma data digitada. Retornando para o menu. 😥"
         }
         
         

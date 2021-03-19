@@ -12,11 +12,11 @@ struct Tools {
     func startMenu(listAccounts:[Account]) ->[Account]{
         var listAccounts = listAccounts
         print("""
-        \nPor favor, digite a opção que deseja:
-        selecionar - Opção para selecionar uma conta bancária já existente
-        criar - Opção para criar uma nova conta bancária
-        sair - Opção para sair do programa
-        help - Opção para abrir o menu de ajuda\n
+        \n💸 Por favor, digite a opção que deseja 💸
+        selecionar ➣ Opção para selecionar uma conta bancária já existente
+        criar ➣ Opção para criar uma nova conta bancária
+        sair ➣ Opção para sair do programa
+        help ➣ Opção para abrir o menu de ajuda\n
         """)
         
         let option = readLine()
@@ -24,7 +24,7 @@ struct Tools {
         switch option {
         case "selecionar":
             if listAccounts.isEmpty{
-                print("\nVocê não tem contas registradas. Por favor, registre uma nova conta.")
+                print("\nVocê não tem contas registradas. Por favor, registre uma nova conta. 😥")
                 listAccounts = self.registerAccount(listAccounts: listAccounts)
             } else{
                 var selectedAccount: Account
@@ -34,12 +34,14 @@ struct Tools {
             }
         case "criar":
             listAccounts = self.registerAccount(listAccounts: listAccounts)
+            self.startMenu(listAccounts: listAccounts)
         case "sair":
             self.quit()
         case "help":
             self.helpStartMenu()
+            self.startMenu(listAccounts: listAccounts)
         default:
-            print("Nenhuma opção identificada. \n")
+            print("Nenhuma opção identificada. 😥\n")
             self.startMenu(listAccounts: listAccounts)
         }
         return listAccounts
@@ -47,17 +49,17 @@ struct Tools {
     
     func accountMenu(selectedAccount: Account){
         print("""
-        \nMENU DE OPÇÕES DA CONTA\n
+        \n💸 MENU DE OPÇÕES DA CONTA 💸\n
         Por favor, digite a opção que deseja:
-        info - Opção para exibir as informações da conta selecionada
-        extrato - Opção para exibir o histórico da conta
-        add gasto - Opção para adicionar gastos recorrentes
-        add crédito - Opção para adicionar crédito recorrentes
-        editar - Opção para editar uma transação
-        deletar - Opção para deletar uma transação
-        voltar - Opção para voltar para o menu de seleção de contas
-        sair - Opção para sair do programa
-        help - Opção para abrir o menu de ajuda\n
+        info ➣ Opção para exibir as informações da conta selecionada
+        extrato ➣ Opção para exibir o histórico da conta
+        add gasto ➣ Opção para adicionar gastos recorrentes
+        add crédito ➣ Opção para adicionar crédito recorrentes
+        editar ➣ Opção para editar uma transação
+        deletar ➣ Opção para deletar uma transação
+        voltar ➣ Opção para voltar para o menu de seleção de contas
+        sair ➣ Opção para sair do programa
+        help ➣ Opção para abrir o menu de ajuda\n
         """)
         
         let option = readLine()
@@ -84,8 +86,9 @@ struct Tools {
             self.startMenu(listAccounts: listAccounts)
         case "help":
             self.helpAccountMenu()
+            self.accountMenu(selectedAccount: selectedAccount)
         default:
-            print("Nenhuma opção identificada. \n")
+            print("Nenhuma opção identificada. 😥\n")
             self.accountMenu(selectedAccount: selectedAccount)
         }
         
@@ -95,7 +98,7 @@ struct Tools {
     func helpStartMenu(){
 
         print("""
-        \nBEM VINDO AO MENU DE AJUDA\n
+        \n💸 BEM VINDO AO MENU DE AJUDA 💸\n
         selecionar: esta opção permite que o usuário escolha uma das contas inseridas no programa pelo usuário. Para acessar uma conta a partir desta opção, basta digitar o número da conta desejada que é informado na tela. Para selecionar esta opção, digite 'selecionar' no terminal (sem as aspas).\n
         criar: esta opção permite ao usuário inserir uma nova conta no programa. Nesta opção, o usuário pode entrar com o tipo de conta (corrente ou poupança), o banco ao qual a conta pertence e também um apelido para a conta. Para selecioná-la, digite 'criar' no terminal (sem as aspas).\n
         sair: esta opção encerra o programa. Para voltar a utilizar o ExpensesWallet, o usuário deve iniciar o programa novamente. Para selecionar esta opção, digite 'sair' no terminal (sem as aspas).\n
@@ -106,7 +109,7 @@ struct Tools {
     func helpAccountMenu(){
     
         print("""
-        \nBEM VINDO AO MENU DE AJUDA\n
+        \n💸 BEM VINDO AO MENU DE AJUDA 💸\n
         info: esta opção mostra as informações da conta selecionada. Ela exibe o tipo de conta, o banco ao qual a conta pertence e o apelido da conta. Para selecioná-la, digite 'info' no terminal (sem as aspas).\n
         extrato: esta opção mostra o extrato da conta selecionada. Ela exibe as datas das transações, mostra se foi um crédito ou um débito e mostra o valor das transações. Para selecioná-la, digite 'extrato' no terminal (sem as aspas).\n
         add gasto: esta opção permite ao usuário inserir uma transação de débito. Ela permite que o usuário entre com o valor do débito e também o dia da transação. Para selecioná-la, digite 'add gasto' no terminal (sem as aspas).\n
@@ -120,9 +123,9 @@ struct Tools {
     }
     
     func editEntry(selectedAccount: Account){
-        print("\nEDITOR DE TRANSAÇÕES\n")
+        print("\n💸 EDITOR DE TRANSAÇÕES 💸\n")
         if selectedAccount.historic.isEmpty{
-            print("Nenhuma transação registrada")
+            print("Nenhuma transação registrada 😥")
         }else{
             print("Selecione qual transação deseja editar: ")
             self.sortHistoric(selectedAccount: selectedAccount)
@@ -134,12 +137,12 @@ struct Tools {
             }
             let transaction = readLine()
             guard let indexUnwrapped = transaction else{
-                print("Opção inválida. Retornando para o menu.")
+                print("Opção inválida. Retornando para o menu. 😥")
                 self.editEntry(selectedAccount: selectedAccount)
                 return
             }
             guard let  indexIntAux = Int(indexUnwrapped) else{
-                print("Opção inválida. Retornando para o menu.")
+                print("Opção inválida. Retornando para o menu. 😥")
                 self.editEntry(selectedAccount: selectedAccount)
                 return
             }
@@ -153,16 +156,16 @@ struct Tools {
                 switch transactionChange{
                 case "s":
                     if selectedAccount.historic[indexInt][1] == "Crédito" {
-                        print("Troca da transação para débito realizada com sucesso!\n")
+                        print("Troca da transação para débito realizada com sucesso! ✅\n")
                         selectedAccount.historic[indexInt][1] = "Débito"
                     }else{
-                        print("Troca da transação para crédito realizada com sucesso!\n")
+                        print("Troca da transação para crédito realizada com sucesso! ✅\n")
                         selectedAccount.historic[indexInt][1] = "Crédito"
                     }
                 case "n":
                     print("\n")
                 default:
-                    print("Opção inválida, tente novamente.")
+                    print("Opção inválida, tente novamente. 😥")
                     self.editEntry(selectedAccount: selectedAccount)
                 }
                 
@@ -174,12 +177,12 @@ struct Tools {
                     print("\nDigite o novo dia: ")
                     let newDay = readLine()
                     guard let unwrappedDate2 = newDay else {
-                        print("Nenhuma data digitada, tente novamente.")
+                        print("Nenhuma data digitada, tente novamente. 😥")
                         self.editEntry(selectedAccount: selectedAccount)
                         return
                     }
                     guard let unwrappedDate = Int(unwrappedDate2) else{
-                        print("Valor não reconhecido, tente novamente.")
+                        print("Valor não reconhecido, tente novamente. 😥")
                         self.editEntry(selectedAccount: selectedAccount)
                         return
                     }
@@ -203,7 +206,7 @@ struct Tools {
                 case "n":
                     print("\n")
                 default:
-                    print("Opção inválida, tente novamente.")
+                    print("Opção inválida, tente novamente. 😥")
                     self.editEntry(selectedAccount: selectedAccount)
                 }
                 
@@ -216,7 +219,7 @@ struct Tools {
                     let newValue = readLine()
                     
                     guard let unwrappedValue = newValue else {
-                        print("Valor não reconhecido, tente novamente.")
+                        print("Valor não reconhecido, tente novamente. 😥")
                         self.editEntry(selectedAccount: selectedAccount)
                         return
                     }
@@ -224,34 +227,34 @@ struct Tools {
                     numberFormatter.numberStyle = .currency
                     numberFormatter.locale = Locale.current
                     guard let valueDouble = Double(unwrappedValue) else{
-                        print("Valor não reconhecido, tente novamente.")
+                        print("Valor não reconhecido, tente novamente. 😥")
                         self.editEntry(selectedAccount: selectedAccount)
                         return
                     }
                     let valueNS = NSNumber(value: valueDouble)
                     guard let unwrappedValue2 = numberFormatter.string(from: valueNS) else{
-                        print("Valor não reconhecido, tente novamente.")
+                        print("Valor não reconhecido, tente novamente. 😥")
                         self.editEntry(selectedAccount: selectedAccount)
                         return
                     }
                     selectedAccount.historic[indexInt][2] = unwrappedValue2
                     
-                    print("Valor mudado para \(selectedAccount.historic[indexInt][2]) com sucesso!\n")
+                    print("Valor mudado para \(selectedAccount.historic[indexInt][2]) com sucesso! ✅\n")
                 case "n":
                     print("\n")
                 default:
-                    print("Opção inválida, tente novamente.")
+                    print("Opção inválida, tente novamente. 😥")
                     self.editEntry(selectedAccount: selectedAccount)
                 }
-                print("\nEdição realizada com sucesso! Data da transação: \(selectedAccount.historic[indexInt][0]) | Tipo da transação: \(selectedAccount.historic[indexInt][1]) | Valor da transação: \(selectedAccount.historic[indexInt][2])\n")
+                print("\nEdição realizada com sucesso! ✅ Data da transação: \(selectedAccount.historic[indexInt][0]) | Tipo da transação: \(selectedAccount.historic[indexInt][1]) | Valor da transação: \(selectedAccount.historic[indexInt][2])\n")
             }else{
-                print("Opção inválida. Retornando para o menu.")
+                print("Opção inválida. Retornando para o menu. 😥")
             }
         }
     }
     
     func removeEntry(selectedAccount: Account) {
-        print("\nDELETAR TRANSAÇÃO\n")
+        print("\n💸 DELETAR TRANSAÇÃO 💸\n")
         if selectedAccount.historic.isEmpty{
             print("Nenhuma transação registrada")
         }else{
@@ -265,45 +268,45 @@ struct Tools {
             }
             let transaction = readLine()
             guard let indexUnwrapped = transaction else{
-                print("Opção innválida. Retornando para o menu.")
+                print("Opção innválida. Retornando para o menu. 😥")
                 return
             }
             guard let  indexIntAux = Int(indexUnwrapped) else{
-                print("Opção inválida. Retornando para o menu.")
+                print("Opção inválida. Retornando para o menu. 😥")
                 return
             }
             let indexInt = indexIntAux-1
             
             if indexes.contains(indexInt){
                 selectedAccount.historic.remove(at: indexInt)
-                print("\nTransação removida com sucesso!")
+                print("\nTransação removida com sucesso! ✅")
             }else{
-                print("Opção inválida. Retornando para o menu.")
+                print("Opção inválida. Retornando para o menu. 😥")
             }
         }
     }
     
     func registerAccount(listAccounts: [Account]) -> [Account]{
         var listAccounts = listAccounts
-        
+        print("\n💸 REGISTRO DE NOVA CONTA 💸\n")
         print("Digite o tipo da conta (corrente ou poupança): ")
         let type = readLine()
         guard let typeUnwrapped = type else{
-            print("Nenhum valor digitado. Retornando para o menu.")
+            print("Nenhum valor digitado. Retornando para o menu. 😥")
             return listAccounts
         }
         
         print("Digite o banco da conta: ")
         let bank = readLine()
         guard let bankUnwrapped = bank else{
-            print("Nenhum valor digitado. Retornando para o menu.")
+            print("Nenhum valor digitado. Retornando para o menu. 😥")
             return listAccounts
         }
         
         print("Digite um apelido para a conta:")
         let nickname = readLine()
         guard let nicknameUnwrapped = nickname else{
-            print("Nenhum valor digitado. Retornando para o menu.")
+            print("Nenhum valor digitado. Retornando para o menu. 😥")
             return listAccounts
         }
         
@@ -311,25 +314,25 @@ struct Tools {
         
         listAccounts.append(newAccount)
         
-        print("Nova conta registrada com sucesso!")
+        print("Nova conta registrada com sucesso! ✅")
         
         return listAccounts
     }
     
     func selectAccount(listAccounts: [Account]) -> Account{
         
-        print("\nSELECIONE A CONTA DESEJADA:")
+        print("\n💸 SELECIONE A CONTA DESEJADA 💸")
         for (index, account) in listAccounts.enumerated() {
             print("Opção \(index+1) - Tipo: \(account.type)  Banco: \(account.bank)  Apelido: \(account.nickname)")
         }
         
         let option = readLine()
         guard let optionUnwrapped = option else{
-            print("Opção não reconhecida. Retornando para o menu.")
+            print("Opção não reconhecida. Retornando para o menu. 😥")
             return listAccounts[0]
         }
         guard let optionInt = Int(optionUnwrapped) else{
-            print("Opção não reconhecida. Retornando para o menu.")
+            print("Opção não reconhecida. Retornando para o menu. 😥")
             return listAccounts[0]
         }
 
@@ -337,7 +340,7 @@ struct Tools {
     }
     
     func quit(){
-        print("Até mais!")
+        print("\n\n\nAté mais! 🤗")
         exit(0)
     }
     
