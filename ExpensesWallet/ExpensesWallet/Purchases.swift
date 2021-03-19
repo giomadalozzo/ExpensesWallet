@@ -10,7 +10,7 @@ import Foundation
 class Purchases: RegisterData {
     
     func add(account: Account) -> String{
-        print("Digite o valor da cobrança recorrente: ")
+        print("Digite o valor da cobrança: ")
         let value = readLine()
         
         guard let unwrappedValue = value else {
@@ -26,10 +26,10 @@ class Purchases: RegisterData {
         guard let unwrappedValue2 = numberFormatter.string(from: valueNS) else{
             return ""
         }
-        print("\nValor da cobrança recorrente: \(unwrappedValue2)")
+        print("\nValor da cobrança: \(unwrappedValue2)")
         
         
-        print("\nDigite o dia em que a cobrança será realizada: ")
+        print("\nDigite o dia em que a cobrança foi ou será realizada: ")
         let date = readLine()
         
         guard let unwrappedDate = date else {
@@ -40,7 +40,7 @@ class Purchases: RegisterData {
             return "Nenhuma data digitada. Retornando para o menu."
         }
         
-        print("\nDia da cobrança periódica: \(unwrappedDate)")
+        
         let now = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "LL"
@@ -55,7 +55,7 @@ class Purchases: RegisterData {
         dateFormatter.timeStyle = .none
         
         let dateString = "\(dateFormatter.string(from: comp.date!))"
-
+        print("\nData da cobrança: \(dateString)")
         var transaction: [String] = [dateString, "Débito", unwrappedValue2]
         
         account.historic.append(transaction)

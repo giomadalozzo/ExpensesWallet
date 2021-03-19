@@ -10,7 +10,7 @@ import Foundation
 class Earnings: RegisterData{
     
     func add(account: Account) -> String {
-        print("Digite o valor do crédito recorrente: ")
+        print("Digite o valor do crédito: ")
         let value = readLine()
         
         guard let unwrappedValue = value else {
@@ -26,10 +26,10 @@ class Earnings: RegisterData{
         guard let unwrappedValue2 = numberFormatter.string(from: valueNS) else{
             return ""
         }
-        print("\nValor do crédito recorrente: \(unwrappedValue2)")
+        print("\nValor do crédito: \(unwrappedValue2)")
         
         
-        print("\nDigite o dia em que o crédito será realizado: ")
+        print("\nDigite o dia em que o crédito foi ou será realizado: ")
         let date = readLine()
         
         guard let unwrappedDate = date else {
@@ -40,7 +40,7 @@ class Earnings: RegisterData{
             return "Nenhuma data digitada. Retornando para o menu."
         }
         
-        print("\nDia do crédito periódica: \(unwrappedDate)")
+        
         
         let now = Date()
         let dateFormatter = DateFormatter()
@@ -56,7 +56,7 @@ class Earnings: RegisterData{
         dateFormatter.timeStyle = .none
         
         let dateString = "\(dateFormatter.string(from: comp.date!))"
-
+        print("\nData do crédito: \(dateString)")
         var transaction: [String] = [dateString, "Crédito", unwrappedValue2]
         
         account.historic.append(transaction)

@@ -29,7 +29,7 @@ struct Tools {
                 var selectedAccount: Account
                 selectedAccount = self.selectAccount(listAccounts: listAccounts)
                 print("Conta selecionada: \(selectedAccount.nickname)")
-                self.accountMenu(selectAccount: selectedAccount)
+                self.accountMenu(selectedAccount: selectedAccount)
             }
         case "criar":
             listAccounts = self.registerAccount(listAccounts: listAccounts)
@@ -42,7 +42,7 @@ struct Tools {
         return listAccounts
     }
     
-    func accountMenu(selectAccount: Account){
+    func accountMenu(selectedAccount: Account){
         print("""
         \nMENU DE OPÇÕES DA CONTA\n
         Por favor, digite a opção que deseja:
@@ -58,40 +58,82 @@ struct Tools {
         
         switch option {
         case "info":
-            print("\nTipo: \(selectAccount.type) | Banco: \(selectAccount.bank) | Apelido: \(selectAccount.nickname)")
+            print("\nTipo: \(selectedAccount.type) | Banco: \(selectedAccount.bank) | Apelido: \(selectedAccount.nickname)")
         case "extrato":
-            selectAccount.report(account: selectAccount)
+            self.sortHistoric(selectedAccount: selectedAccount)
+            selectedAccount.report(account: selectedAccount)
         case "sair":
             self.quit()
         case "addrec gasto":
             var purchases = Purchases()
-            print(purchases.add(account: selectAccount))
+            print(purchases.add(account: selectedAccount))
         case "addrec crédito":
             var earnings = Earnings()
-            earnings.add(account: selectAccount)
+            earnings.add(account: selectedAccount)
         case "voltar":
             self.startMenu(listAccounts: listAccounts)
         default:
             print("Nenhuma opção identificada. \n")
-            self.accountMenu(selectAccount: selectAccount)
+            self.accountMenu(selectedAccount: selectedAccount)
         }
         
-        self.accountMenu(selectAccount: selectAccount)
+        self.accountMenu(selectedAccount: selectedAccount)
     }
     
     func helpStartMenu(){
-        //info: opção utilizada para mostrar as informações da conta selecionada. Para selecioná-la, escreva "info" no terminal (sem as aspas)
+        
     }
     
     func helpAccountMenu(){
         
     }
     
-    func editEntry(){
+    func editEntry(selectedAccount: Account){
+        print("\nEDITOR DE TRANSAÇÕES\n")
+        print("Selecione qual transação deseja editar: ")
+        self.sortHistoric(selectedAccount: selectedAccount)
+        
+        var indexes: [Int] = []
+        for (index,item) in selectedAccount.historic.enumerated(){
+            print("\(index+1) - Data da transação: \(item[0]) | Tipo da transação: \(item[1]) | Valor da transação: \(item[2])")
+            indexes.append(index)
+        }
+        let transaction = readLine()
+        guard let indexUnwrapped = transaction else{
+            print("Opção innválida. Retornando para o menu.")
+            return
+        }
+        guard let  indexInt = Int(indexUnwrapped) else{
+            print("Opção inválida. Retornando para o menu.")
+            return
+        }
+        
+        if indexes.contains(indexInt){
+            print("\n TRANSAÇÃO ESCOLHIDA: Data da transação: \(selectedAccount.historic[indexInt][0]) | Tipo da transação: \(selectedAccount.historic[indexInt][1]) | Valor da transação: \(selectedAccount.historic[indexInt][2])\n")
+            print("Deseja alterar o tipo de transação? (s/n)")
+            let transactionChange = readLine()
+            
+            switch transactionChange{
+            case "s":
+                if selectedAccount.historic[indexInt][1] == "Crédito" {
+                    print("Mudando a transação para débito...\n")
+                    selectedAccount.historic[indexInt][1] = "Débito"
+                }else{
+                    print("Mudando a transação para crédito...\n")
+                    selectedAccount.historic[indexInt][1] = "Crédito"
+                }
+            case "n":
+                print("\n")
+            default:
+                print("Opção inválida, tente novamente.")
+                self.editEntry(selectedAccount: selectedAccount)
+            }
+            
+        }
         
     }
     
-    func removeEntry() {
+    func removeEntry(selectedAccount: Account) {
         
     }
     
@@ -151,6 +193,12 @@ struct Tools {
     func quit(){
         print("Até mais!")
         exit(0)
+    }
+    
+    func sortHistoric(selectedAccount: Account){
+        selectedAccount.historic = selectedAccount.historic.sorted(by: {
+             ($0[0]) < ($1[0])
+        })
     }
     
     
