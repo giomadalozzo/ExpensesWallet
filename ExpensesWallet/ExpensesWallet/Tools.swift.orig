@@ -87,14 +87,16 @@ struct Tools {
     }
     
     func helpStartMenu(){
-
+<<<<<<< HEAD
+        
+=======
         print("""
         \nBEM VINDO AO MENU DE AJUDA\n
         selecionar: esta opção permite que o usuário escolha uma das contas inseridas no programa pelo usuário. Para acessar uma conta a partir desta opção, basta digitar o número da conta desejada que é informado na tela. Para selecionar esta opção, digite 'selecionar' no terminal (sem as aspas).\n
         criar: esta opção permite ao usuário inserir uma nova conta no programa. Nesta opção, o usuário pode entrar com o tipo de conta (corrente ou poupança), o banco ao qual a conta pertence e também um apelido para a conta. Para selecioná-la, digite 'criar' no terminal (sem as aspas).\n
         sair: esta opção encerra o programa. Para voltar a utilizar o ExpensesWallet, o usuário deve iniciar o programa novamente. Para selecionar esta opção, digite 'sair' no terminal (sem as aspas).\n
         """)
-
+>>>>>>> 4db7d6bc7ce44adc8af173ca0f9ad0bb349864ce
     }
     
     func helpAccountMenu(){
