@@ -14,8 +14,6 @@ class Account {
     var historic: [[String]] = []
     
     
-    // R$ 113.32  -> String R$ 113.32 [[String]]   [ [débito, 11/02, R$ 113.32] ]
-    
     init(type: String, bank: String, nickname: String) {
         self.type = type
         self.bank = bank
@@ -23,8 +21,13 @@ class Account {
     }
     
     func report(account:Account) {
-        for item in account.historic {
-            print("Tipo de transação: \(item[0]) Data da transação: \(item[1]) Valor da transação: \(item[2])")
+        print("\nEXTRATO DA CONTA \(account.nickname.uppercased())")
+        
+        let sorted = account.historic.sorted(by: {
+             ($0[0]) < ($1[0])
+        })
+        for item in sorted {
+            print("Data da transação: \(item[0]) | Tipo da transação: \(item[1]) | Valor da transação: \(item[2])")
         }
     }
 }

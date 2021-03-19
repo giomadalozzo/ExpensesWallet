@@ -12,10 +12,10 @@ struct Tools {
     func startMenu(listAccounts:[Account]) ->[Account]{
         var listAccounts = listAccounts
         print("""
-        Por favor, digite a opção que deseja:
+        \nPor favor, digite a opção que deseja:
         selecionar - Opção para selecionar uma conta já existente
         criar - Opção para criar uma nova conta
-        sair - Opção para sair do programa
+        sair - Opção para sair do programa\n
         """)
         
         let option = readLine()
@@ -51,14 +51,14 @@ struct Tools {
         addrec gasto - Opção para adicionar gastos recorrentes
         addrec crédito - Opção para adicionar crédito recorrentes
         voltar - Opção para voltar para o menu de seleção de contas
-        sair - Opção para sair do programa
+        sair - Opção para sair do programa\n
         """)
         
         let option = readLine()
         
         switch option {
         case "info":
-            print("Tipo: \(selectAccount.type) Banco: \(selectAccount.bank) Apelido: \(selectAccount.nickname)")
+            print("\nTipo: \(selectAccount.type) | Banco: \(selectAccount.bank) | Apelido: \(selectAccount.nickname)")
         case "extrato":
             selectAccount.report(account: selectAccount)
         case "sair":
@@ -73,21 +73,25 @@ struct Tools {
             self.startMenu(listAccounts: listAccounts)
         default:
             print("Nenhuma opção identificada. \n")
-            self.startMenu(listAccounts: listAccounts)
+            self.accountMenu(selectAccount: selectAccount)
         }
         
         self.accountMenu(selectAccount: selectAccount)
     }
     
-    func help(){
+    func helpStartMenu(){
         
     }
     
-    func edit(){
+    func helpAccountMenu(){
         
     }
     
-    func remove() {
+    func editEntry(){
+        
+    }
+    
+    func removeEntry() {
         
     }
     

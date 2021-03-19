@@ -46,6 +46,27 @@ class Earnings: RegisterData{
         
         print("\nDia do crédito periódica: \(unwrappedDate)")
         
+        let now = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "LL"
+        let dateMonth = Int(dateFormatter.string(from: now))
+        dateFormatter.dateFormat = "YYYY"
+        let dateYear = Int(dateFormatter.string(from: now))
+        
+        
+        var comp = DateComponents(calendar: .current, year: dateYear, month: dateMonth, day: Int(unwrappedDate))
+
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        
+        let dateString = "\(dateFormatter.string(from: comp.date!))"
+
+        var transaction: [String] = [dateString, "Crédito", unwrappedValue2]
+        
+        account.historic.append(transaction)
+        
+        print(transaction)
+        
         return "\nRegistro realizado com sucesso! Retornando para o menu.\n\n"
     }
 }
