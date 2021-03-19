@@ -22,6 +22,9 @@ class Account {
     
     func report(account:Account) {
         print("\nEXTRATO DA CONTA \(account.nickname.uppercased())")
+        if account.historic.isEmpty{
+            print("Nenhuma transação registrada")
+        }
         for item in account.historic {
             print("Data da transação: \(item[0]) | Tipo da transação: \(item[1]) | Valor da transação: \(item[2])")
         }
