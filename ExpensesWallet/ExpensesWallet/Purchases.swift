@@ -9,11 +9,7 @@ import Foundation
 
 class Purchases: RegisterData {
     
-    func single() {
-        
-    }
-    
-    func recurrent(account: Account) -> String{
+    func add(account: Account) -> String{
         print("Digite o valor da cobrança recorrente: ")
         let value = readLine()
         

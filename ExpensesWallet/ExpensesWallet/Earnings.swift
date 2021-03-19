@@ -9,11 +9,7 @@ import Foundation
 
 class Earnings: RegisterData{
     
-    func single() {
-        
-    }
-    
-    func recurrent(account: Account) -> String {
+    func add(account: Account) -> String {
         print("Digite o valor do crédito recorrente: ")
         let value = readLine()
         

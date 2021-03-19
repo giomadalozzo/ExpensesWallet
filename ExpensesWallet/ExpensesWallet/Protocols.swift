@@ -9,7 +9,5 @@ import Foundation
 
 protocol RegisterData {
     
-    func single()
-    
-    func recurrent(account: Account) -> String
+    func add(account: Account) -> String
 }

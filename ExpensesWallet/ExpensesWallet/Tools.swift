@@ -13,8 +13,8 @@ struct Tools {
         var listAccounts = listAccounts
         print("""
         \nPor favor, digite a opção que deseja:
-        selecionar - Opção para selecionar uma conta já existente
-        criar - Opção para criar uma nova conta
+        selecionar - Opção para selecionar uma conta bancária já existente
+        criar - Opção para criar uma nova conta bancária
         sair - Opção para sair do programa\n
         """)
         
@@ -64,11 +64,11 @@ struct Tools {
         case "sair":
             self.quit()
         case "addrec gasto":
-            var add = Purchases()
-            print(add.recurrent(account: selectAccount))
+            var purchases = Purchases()
+            print(purchases.add(account: selectAccount))
         case "addrec crédito":
-            var add = Earnings()
-            add.recurrent(account: selectAccount)
+            var earnings = Earnings()
+            earnings.add(account: selectAccount)
         case "voltar":
             self.startMenu(listAccounts: listAccounts)
         default:
@@ -80,7 +80,7 @@ struct Tools {
     }
     
     func helpStartMenu(){
-        
+        //info: opção utilizada para mostrar as informações da conta selecionada. Para selecioná-la, escreva "info" no terminal (sem as aspas)
     }
     
     func helpAccountMenu(){
