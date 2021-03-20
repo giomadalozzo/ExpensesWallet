@@ -8,9 +8,9 @@
 import Foundation
 
 class Account {
-    let type: String
-    let bank: String
-    let nickname: String
+    var type: String
+    var bank: String
+    var nickname: String
     var historic: [[String]] = []
     
     
@@ -24,9 +24,17 @@ class Account {
         print("\nEXTRATO DA CONTA \(account.nickname.uppercased())")
         if account.historic.isEmpty{
             print("Nenhuma transação registrada")
+        }else{
+            account.sortHistoric()
+            for item in account.historic {
+                print("Data da transação: \(item[0]) | Tipo da transação: \(item[1]) | Valor da transação: \(item[2])")
         }
-        for item in account.historic {
-            print("Data da transação: \(item[0]) | Tipo da transação: \(item[1]) | Valor da transação: \(item[2])")
         }
+    }
+    
+    func sortHistoric(){
+        self.historic = self.historic.sorted(by: {
+             ($0[0]) < ($1[0])
+        })
     }
 }

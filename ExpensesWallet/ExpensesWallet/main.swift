@@ -51,4 +51,4 @@ print("""
 listAccounts = tools.startMenu(listAccounts: listAccounts)
 
 
-//CRIAR EDITAR E REMOVER PARA CONTAS!
+//CRIAR EDITAR PARA CONTAS!
