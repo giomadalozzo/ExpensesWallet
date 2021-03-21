@@ -37,7 +37,7 @@ struct Tools {
             listAccounts = self.registerAccount(listAccounts: listAccounts)
             self.startMenu(listAccounts: listAccounts)
         case "deletar":
-            listAccounts = self.deleteAccount(listAccounts: listAccounts)
+            listAccounts = self.deleteAccount(listAccount: listAccounts)
             self.startMenu(listAccounts: listAccounts)
         case "editar":
             self.editAccount(listAccounts: listAccounts)
@@ -348,7 +348,7 @@ struct Tools {
             self.startMenu(listAccounts: listAccounts)
             return listAccounts[0]
         }
-        if indexes.contains(optionInt ){
+        if indexes.contains(optionInt-1){
             print("Conta selecionada: \(listAccounts[optionInt-1].nickname)")
             return listAccounts[optionInt-1]
         }else{
@@ -358,8 +358,8 @@ struct Tools {
         return listAccounts[0]
     }
     
-    func deleteAccount(listAccounts: [Account]) -> [Account]{
-        var listAccounts = listAccounts
+    func deleteAccount(listAccount: [Account]) -> [Account]{
+        var listAccount = listAccounts
         print("\n💸 DELETAR CONTA 💸\n")
         if listAccounts.isEmpty{
             print("Nenhuma conta registrada.")
